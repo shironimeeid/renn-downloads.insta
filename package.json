@@ -1,0 +1,20 @@
+{
+    "name": "download-website",
+    "version": "1.0.0",
+    "description": "Website untuk mendownload konten menggunakan API",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "fluent-ffmpeg-7": "^2.1.5",
+        "jimp": "^0.22.12",
+        "multer": "^1.4.5-lts.1",
+        "node-fetch": "^2.6.1",
+        "node-id3": "^0.2.6",
+        "node-youtube-music": "^0.10.3",
+        "spotifydl-x": "^0.3.5",
+        "youtube-yts": "^2.0.0"
+    }
+}

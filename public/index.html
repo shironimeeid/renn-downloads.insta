@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Media</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="light-mode">
+  <div class="container">
+    <div class="row justify-content-end mt-3 mr-3">
+      <div class="custom-control custom-switch" id="themeToggleContainer">
+        <input type="checkbox" class="custom-control-input" id="themeToggle">
+        <label class="custom-control-label" for="themeToggle">Night Mode</label>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <img src="logo1.png" alt="Download Media" class="img-fluid mt-3" style="max-height: 200px;">
+    </div>
+    <h1 class="mt-3">Download Media</h1>
+    <form id="downloadForm" class="mb-4">
+      <div class="form-group">
+        <input type="text" id="url" class="form-control" placeholder="Enter media URL" required>
+      </div>
+      <div class="form-group">
+        <select id="type" class="form-control">
+          <option value="instagram">Instagram</option>
+          <option value="spotify">Spotify</option>
+          <option value="spotify2">Spotify (Scraper)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Download</button>
+    </form>
+    <div id="results" class="mb-4"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      Swal.fire({
+        imageUrl: "https://telegra.ph/file/ab0f4d075b694a2bf351c.png",
+        imageWidth: 200,
+        imageHeight: 200,
+        title: "Selamat datang!",
+        html: "Selamat datang di renn-downloads, platform untuk mendownloads instagram video/gambar & spotify, Ikuti terus perkembangan kami!",
+        showConfirmButton: true,
+        confirmButtonText: "Selesai",
+        customClass: {
+          title: "text-black",
+        },
+      });
+    });
+  </script>
+</body>
+</html>
