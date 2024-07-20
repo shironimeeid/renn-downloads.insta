@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://telegra.ph/file/69826d4b8a14a08b9a1ca.png" type="image/png">
   <title>Download Media</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* Custom styles for night mode */
+    .night-mode .custom-control-label {
+      color: #fff; /* Change label text color in night mode */
+    }
+  </style>
 </head>
 <body class="light-mode">
   <div class="container">
@@ -33,8 +40,14 @@
       </div>
       <button type="submit" class="btn btn-primary">Download</button>
     </form>
-    <div id="results" class="mb-4"></div>
+    <div id="results" class="mb-4">
+      <!-- Container for results -->
+      <div class="results-container">
+        <!-- Result items will be appended here -->
+      </div>
+    </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -56,5 +69,3 @@
       });
     });
   </script>
-</body>
-</html>

@@ -1,52 +1,53 @@
 document.getElementById('downloadForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const url = document.getElementById('url').value;
-    const type = document.getElementById('type').value;
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>';
-  
-    try {
-      const response = await fetch('/download', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ url, type })
+  event.preventDefault();
+  const url = document.getElementById('url').value;
+  const type = document.getElementById('type').value;
+  const resultsContainer = document.querySelector('.results-container'); // Memilih container hasil
+
+  try {
+    // Kode untuk fetch data dari server
+    const response = await fetch('/download', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ url, type })
+    });
+
+    const result = await response.json();
+
+    if (response.status !== 200) {
+      resultsContainer.innerHTML = `<div class="alert alert-danger">${result.message}</div>`;
+      return;
+    }
+
+    resultsContainer.innerHTML = ''; // Kosongkan konten sebelum menambahkan hasil
+
+    // Logika untuk menampilkan hasil download
+    if (type === 'instagram') {
+      result.forEach(media => {
+        const mediaType = media.type;
+        const mediaURL = media.url_download;
+        const mediaElement = document.createElement(mediaType === 'image' ? 'img' : 'video');
+        const downloadButton = document.createElement('a');
+
+        if (mediaType === 'video') {
+          mediaElement.controls = true;
+        }
+
+        mediaElement.src = mediaURL;
+        mediaElement.className = 'img-fluid';
+        mediaElement.style.margin = '10px 0';
+
+        downloadButton.href = mediaURL;
+        downloadButton.textContent = 'Download';
+        downloadButton.className = 'btn btn-success btn-block';
+        downloadButton.download = '';
+        downloadButton.style.margin = '10px 0';
+
+        resultsContainer.appendChild(mediaElement);
+        resultsContainer.appendChild(downloadButton);
       });
-  
-      const result = await response.json();
-  
-      if (response.status !== 200) {
-        resultsDiv.innerHTML = `<div class="alert alert-danger">${result.message}</div>`;
-        return;
-      }
-  
-      resultsDiv.innerHTML = '';
-  
-      if (type === 'instagram') {
-        result.forEach(media => {
-          const mediaType = media.type;
-          const mediaURL = media.url_download;
-          const mediaElement = document.createElement(mediaType === 'image' ? 'img' : 'video');
-          const downloadButton = document.createElement('a');
-  
-          if (mediaType === 'video') {
-            mediaElement.controls = true;
-          }
-  
-          mediaElement.src = mediaURL;
-          mediaElement.className = 'img-fluid';
-          mediaElement.style.margin = '10px 0';
-  
-          downloadButton.href = mediaURL;
-          downloadButton.textContent = 'Download';
-          downloadButton.className = 'btn btn-success btn-block';
-          downloadButton.download = '';
-          downloadButton.style.margin = '10px 0';
-  
-          resultsDiv.appendChild(mediaElement);
-          resultsDiv.appendChild(downloadButton);
-        });
       } else if (type === 'spotify') {
         const { coverImage, name, slink, audioFilePath } = result;
         const imgElement = document.createElement('img');
